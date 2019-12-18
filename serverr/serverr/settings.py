@@ -50,6 +50,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+MIDDLEWARE_CLASSES = [
+    'microdetector.Middleware',
+]
+
 ROOT_URLCONF = 'serverr.urls'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
