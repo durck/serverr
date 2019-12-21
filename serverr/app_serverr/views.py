@@ -61,7 +61,8 @@ def telgram(mes):
     try:
         f = open('ids.txt')
     except IOError as e:
-        pass
+        with open('ids.txt', 'w') as w:
+            pass
     else:
         with f:
             for l in f:
