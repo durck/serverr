@@ -26,6 +26,7 @@ SECRET_KEY = 'jxwg2o!fb%&wy2v7ntw@b@6vnonyfy%4vck15&elr-9kau#6g5'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'durckma.pythonanywhere.com',
 ]
 
@@ -128,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

