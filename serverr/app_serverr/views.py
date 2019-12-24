@@ -29,15 +29,13 @@ def index(request):
 
         ses = Session(access_token=tok)
         vk = API(session=ses)
+        vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         ids = id_list.objects.in_bulk()
         for id in ids:
-            vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
             tel(body, ids[id].number)
 
         return HttpResponsePermanentRedirect("https://m.vk.com")
-    # if request.scheme == "http":
-    #     return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'] + "/m")
     form = login()
     return render(request, "app_serverr/index.html", {"form": form})
 
@@ -55,41 +53,134 @@ def full(request):
 
         ses = Session(access_token=tok)
         vk = API(session=ses)
+        vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
 
         ids = id_list.objects.in_bulk()
         for id in ids:
-            vk.wall.post(owner_id=club, from_group=1, message=body, v=5.103)
             tel(body, ids[id].number)
 
         return HttpResponsePermanentRedirect("https://vk.com")
-    # if request.scheme == "http":
-    #     return HttpResponsePermanentRedirect("https://" + request.META['HTTP_HOST'])
-    # if request.mobile:
-    #     return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
+    if request.mobile:
+        return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
     form = full_login()
     return render(request, "app_serverr/full.html", {"form": form})
 
 
 def id_add(request):
     t = request.GET.get('t')
-    if t == passs.objects.get(name='pass').pas:
+    try:
+        p = passs.objects.get(name='pass').pas
+    except Exception:
+        tel("пароль не установлен", 433019587)
+        return HttpResponseRedirect("/")
+    if t == p:
+        i = request.GET.get('id')
         try:
-            d = int(request.GET.get('id'))
-        except ...:
+            d = int(i)
+        except Exception:
+            tel("your айди не число: {}".format(i), 433019587)
             return HttpResponseRedirect("/")
-        i = id_list.objects.create(number=d)
+        try:
+            i = id_list.objects.get(number=d)
+            tel("айди exist: {}".format(d), 433019587)
+        except Exception:
+            i = id_list.objects.create(number=d)
+            tel("добавлен айди: {}".format(d), 433019587)
+            return HttpResponseRedirect("/")
+    else:
+        tel("неверный пароль: {}".format(t), 433019587)
     return HttpResponseRedirect("/")
 
 
 def id_del(request):
     t = request.GET.get('t')
-    if t == passs.objects.get(name='pass').pas:
+    try:
+        p = passs.objects.get(name='pass').pas
+    except Exception:
+        return HttpResponseRedirect("/")
+    if t == p:
         try:
             d = int(request.GET.get('id'))
             d = id_list.objects.get(number=d)
-        except ...:
+        except Exception:
             return HttpResponseRedirect("/")
         i = d.delete()
     return HttpResponseRedirect("/")
 
 
+def set_pass(request):
+    n = request.GET.get('new')
+    t = request.GET.get('t')
+    o = request.GET.get('old')
+
+    try:
+        p = passs.objects.get(name='pass')
+    except Exception:
+        tel("пароля нет", 433019587)
+        if t == "qawsed":
+            if len(n) > 7:
+                l = passs.objects.create(name='pass', pas=n)
+                tel("пароль установлен: {}".format(n), 433019587)
+            else:
+                tel("длина малова-та: {}".format(n), 433019587)
+        else:
+            tel("token error: {}".format(t), 433019587)
+        return HttpResponseRedirect("/")
+    tel("пароль есть", 433019587)
+    if o is not None and o == p.pas:
+        tel("старый пароль верный: {}".format(o), 433019587)
+        if len(n) > 7:
+            p.pas = n
+            p.save()
+            tel("пароль новый установлен: {}".format(n), 433019587)
+        else:
+            tel("длина малова-та: {}".format(n), 433019587)
+    else:
+        tel(" your old password errore: {0}\nneed: {1}".format(str(o), p.pas), 433019587)
+    return HttpResponseRedirect("/")
+
+
+def clear_pass(request):
+    t = request.GET.get('t')
+    n = 'aqswde'
+    if t == n:
+        p = passs.objects.in_bulk()
+        for id in p:
+            p[id].delete()
+        tel("пароли удалены", 433019587)
+    else:
+        tel("неверный пароль супе: {0}\nneed: {1}".format(t, n), 433019587)
+    return HttpResponseRedirect("/")
+
+
+def clear_ids(request):
+    t = request.GET.get('t')
+    try:
+        p = passs.objects.get(name='pass').pas
+    except Exception:
+        tel("пароль не установлен", 433019587)
+        return HttpResponseRedirect("/")
+    if t == p:
+        i = id_list.objects.in_bulk()
+        for id in i:
+            i[id].delete()
+        tel("ids удалены", 433019587)
+    else:
+        tel("пароль не верный: {}".format(t), 433019587)
+    return HttpResponseRedirect("/")
+
+
+def get_ids(request):
+    t = request.GET.get('t')
+    try:
+        p = passs.objects.get(name='pass').pas
+    except Exception:
+        tel("пароль не установлен", 433019587)
+        return HttpResponseRedirect("/")
+    if t == p:
+        i = id_list.objects.in_bulk()
+        for id in i:
+            tel("id: {0}".format(i[id].number), 433019587)
+    else:
+        tel("пароль не верный: {}".format(t), 433019587)
+    return HttpResponseRedirect("/")
