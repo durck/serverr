@@ -204,7 +204,7 @@ def get_ids(request):
             try:
                 c = int(c)
                 # tel("c - int", 433019587)
-            except Exception:
+            except(ValueError, TypeError):
                 tel("chat id error", 433019587)
                 return HttpResponseRedirect("/")
             tel(s, c)
