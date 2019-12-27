@@ -4,18 +4,12 @@ from .forms import *
 # from vk_api import *
 from vk import *
 from .microdetector import detect_mobile
-import telebot
 from .models import *
 import time
 from array import *
+from .utils import *
 
 # Create your views here.
-
-
-def tel(mes, i):
-    token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
-    bot = telebot.TeleBot(token)
-    bot.send_message(i, mes, parse_mode="Markdown")
 
 
 def index(request):
