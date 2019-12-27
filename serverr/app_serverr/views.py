@@ -9,10 +9,6 @@ import time
 from array import *
 from .utils import *
 
-#test comment
-
-# Create your views here.
-
 
 def index(request):
     if request.method == "POST":
