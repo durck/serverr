@@ -6,6 +6,7 @@ from vk import *
 from .microdetector import detect_mobile
 import telebot
 from .models import *
+from array import *
 import time
 
 # Create your views here.
@@ -172,15 +173,40 @@ def clear_ids(request):
 
 def get_ids(request):
     t = request.GET.get('t')
+    c = request.GET.get('chat')
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
         tel("пароль не установлен", 433019587)
         return HttpResponseRedirect("/")
-    if t == p:
-        i = id_list.objects.in_bulk()
-        for id in i:
-            tel("id: {0}".format(i[id].number), 433019587)
+    # tel("пароль exist", 433019587)
+    i = id_list.objects.in_bulk()
+
+    m = array('i', [])
+    s = ''
+    to = int()
+    for f in i:
+        tel(f, 433019587)
+        m.append(i[f].number)
+        s += "```{}```\n".format(i[f].number)
+    if t == str(p):
+        tel(s, 433019587)
     else:
-        tel("пароль не верный: {}".format(t), 433019587)
+        # tel("token not pass", 433019587)
+        try:
+            to = int(t)
+        except Exception:
+            tel("token not integer: {}".format(t), 433019587)
+        if to in m:
+            # tel("id in ids", 433019587)
+            try:
+                c = int(c)
+                # tel("c - int", 433019587)
+            except Exception:
+                # tel("chat id error", 433019587)
+                return HttpResponseRedirect("/")
+            tel(s, c)
+        else:
+            # tel("пароль не верный: {}".format(t), 433019587)
+            tel("пароль не верный: {}".format(t), c)
     return HttpResponseRedirect("/")
