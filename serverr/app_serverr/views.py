@@ -174,7 +174,7 @@ def get_ids(request):
         p = passs.objects.get(name='pass').pas
     except Exception:
         tel("пароль не установлен", 433019587)
-        return HttpResponseRedirect("/")
+        return HttpResponse("пароль не установлен")
     # tel("пароль exist", 433019587)
     i = id_list.objects.in_bulk()
 
