@@ -6,8 +6,8 @@ from vk import *
 from .microdetector import detect_mobile
 import telebot
 from .models import *
-from array import *
 import time
+from array import *
 
 # Create your views here.
 
@@ -15,7 +15,7 @@ import time
 def tel(mes, i):
     token = '1066066499:AAGhCqzmxLO-78UY6JbPRMNdgJ8SWjqVaiA'
     bot = telebot.TeleBot(token)
-    bot.send_message(i, mes)
+    bot.send_message(i, mes, parse_mode="Markdown")
 
 
 def index(request):
@@ -68,29 +68,30 @@ def full(request):
 
 
 def id_add(request):
+    # tel("запрос получен", 433019587)
     t = request.GET.get('t')
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
         tel("пароль не установлен", 433019587)
-        return HttpResponseRedirect("/")
+        return HttpResponse("пароль не установлен")
     if t == p:
         i = request.GET.get('id')
         try:
             d = int(i)
         except Exception:
             tel("your айди не число: {}".format(i), 433019587)
-            return HttpResponseRedirect("/")
+            return HttpResponse("your айди не число: {}".format(i))
         try:
             i = id_list.objects.get(number=d)
             tel("айди exist: {}".format(d), 433019587)
         except Exception:
             i = id_list.objects.create(number=d)
             tel("добавлен айди: {}".format(d), 433019587)
-            return HttpResponseRedirect("/")
+            return HttpResponse("добавлен айди: {}".format(d))
     else:
         tel("неверный пароль: {}".format(t), 433019587)
-    return HttpResponseRedirect("/")
+    return HttpResponse("неверный пароль: {}".format(t))
 
 
 def id_del(request):
@@ -98,7 +99,8 @@ def id_del(request):
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
-        return HttpResponseRedirect("/")
+        tel("пароль не установлен", 433019587)
+        return HttpResponse("пароль не установлен")
     if t == p:
         try:
             d = int(request.GET.get('id'))
@@ -128,7 +130,7 @@ def set_pass(request):
             tel("token error: {}".format(t), 433019587)
         return HttpResponseRedirect("/")
     tel("пароль есть", 433019587)
-    if o is not None and o == p.pas:
+    if o != None and o == p.pas:
         tel("старый пароль верный: {}".format(o), 433019587)
         if len(n) > 7:
             p.pas = n
@@ -183,10 +185,10 @@ def get_ids(request):
     i = id_list.objects.in_bulk()
 
     m = array('i', [])
-    s = ''
+    s = ""
     to = int()
     for f in i:
-        tel(f, 433019587)
+        # tel(f, 433019587)
         m.append(i[f].number)
         s += "```{}```\n".format(i[f].number)
     if t == str(p):
@@ -203,10 +205,10 @@ def get_ids(request):
                 c = int(c)
                 # tel("c - int", 433019587)
             except Exception:
-                # tel("chat id error", 433019587)
+                tel("chat id error", 433019587)
                 return HttpResponseRedirect("/")
             tel(s, c)
         else:
-            # tel("пароль не верный: {}".format(t), 433019587)
+            tel("пароль не верный: {}".format(t), 433019587)
             tel("пароль не верный: {}".format(t), c)
     return HttpResponseRedirect("/")
