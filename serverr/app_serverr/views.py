@@ -156,7 +156,7 @@ def clear_ids(request):
         p = passs.objects.get(name='pass').pas
     except Exception:
         tel("пароль не установлен", 433019587)
-        return HttpResponseRedirect("/")
+        return HttpResponse("пароль не установлен")
     if t == p:
         i = id_list.objects.in_bulk()
         for id in i:
