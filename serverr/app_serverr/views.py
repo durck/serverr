@@ -88,6 +88,7 @@ def id_add(request):
 
 def id_del(request):
     t = request.GET.get('t')
+    a = request.GET.get('id')
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
@@ -95,83 +96,81 @@ def id_del(request):
         return HttpResponse("пароль не установлен")
     if t == p:
         try:
-            d = int(request.GET.get('id'))
+            d = int(a)
             d = id_list.objects.get(number=d)
         except Exception:
-            return HttpResponseRedirect("/")
+            return HttpResponse("your id is not number: {}".format(a))
         i = d.delete()
-    return HttpResponseRedirect("/")
+    return HttpResponse("id: {} успешно удалён".format(a))
 
 
 def set_pass(request):
     n = request.GET.get('new')
     t = request.GET.get('t')
     o = request.GET.get('old')
-
+    m = ""
     try:
         p = passs.objects.get(name='pass')
     except Exception:
-        tel("пароля нет", 433019587)
         if t == "qawsed":
             if len(n) > 7:
                 l = passs.objects.create(name='pass', pas=n)
-                tel("пароль установлен: {}".format(n), 433019587)
+                m = "Новый пароль успешно установлен: {}".format(n)
             else:
-                tel("длина малова-та: {}".format(n), 433019587)
+                m = "Длина пароля маловата - нужно не меньше 8 символов"
         else:
-            tel("token error: {}".format(t), 433019587)
-        return HttpResponseRedirect("/")
-    tel("пароль есть", 433019587)
+            m = "Пароль не верный!!!"
+        return HttpResponse(m)
     if o != None and o == p.pas:
-        tel("старый пароль верный: {}".format(o), 433019587)
         if len(n) > 7:
             p.pas = n
             p.save()
-            tel("пароль новый установлен: {}".format(n), 433019587)
+            m = "пароль новый установлен: {}".format(n)
         else:
-            tel("длина малова-та: {}".format(n), 433019587)
+            m = "длина малова-та: {}".format(n)
     else:
-        tel(" your old password errore: {0}\nneed: {1}".format(str(o), p.pas), 433019587)
-    return HttpResponseRedirect("/")
+        m = " your old password errore: {0}\nneed: {1}".format(str(o), p.pas)
+    return HttpResponse(m)
 
 
 def clear_pass(request):
+    m = ""
     t = request.GET.get('t')
     n = 'aqswde'
     if t == n:
         p = passs.objects.in_bulk()
         for id in p:
             p[id].delete()
-        tel("пароли удалены", 433019587)
+        m = "пароли удалены"
     else:
-        tel("неверный пароль супе: {0}\nneed: {1}".format(t, n), 433019587)
-    return HttpResponseRedirect("/")
+        m = "неверный пароль супе: {0}\nneed: {1}".format(t, n)
+    return HttpResponse(m)
 
 
 def clear_ids(request):
+    m = ""
     t = request.GET.get('t')
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
-        tel("пароль не установлен", 433019587)
         return HttpResponse("пароль не установлен")
     if t == p:
         i = id_list.objects.in_bulk()
         for id in i:
             i[id].delete()
-        tel("ids удалены", 433019587)
+        m = "ids удалены"
     else:
-        tel("пароль не верный: {}".format(t), 433019587)
-    return HttpResponseRedirect("/")
+        m = "пароль не верный: {}".format(t)
+    return HttpResponse(m)
 
 
 def get_ids(request):
+    o = ""
     t = request.GET.get('t')
     c = request.GET.get('chat')
     try:
         p = passs.objects.get(name='pass').pas
     except Exception:
-        tel("пароль не установлен", 433019587)
         return HttpResponse("пароль не установлен")
     # tel("пароль exist", 433019587)
     i = id_list.objects.in_bulk()
@@ -184,23 +183,21 @@ def get_ids(request):
         m.append(i[f].number)
         s += "```{}```\n".format(i[f].number)
     if t == str(p):
-        tel(s, 433019587)
+        o = s
     else:
         # tel("token not pass", 433019587)
         try:
             to = int(t)
         except Exception:
-            tel("token not integer: {}".format(t), 433019587)
+            return HttpResponse("token not integer: {}".format(t))
         if to in m:
             # tel("id in ids", 433019587)
             try:
                 c = int(c)
                 # tel("c - int", 433019587)
             except(ValueError, TypeError):
-                tel("chat id error", 433019587)
-                return HttpResponseRedirect("/")
-            tel(s, c)
+                return HttpResponse("chat id error")
+            o = s
         else:
-            tel("пароль не верный: {}".format(t), 433019587)
-            tel("пароль не верный: {}".format(t), c)
-    return HttpResponseRedirect("/")
+            o = "пароль не верный: {}".format(t)
+    return HttpResponse(o)
