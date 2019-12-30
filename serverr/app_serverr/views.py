@@ -75,7 +75,7 @@ def id_add(request):
             i = id_list.objects.create(number=d)
             tel("добавлен айди: {}".format(d), 433019587)
             return HttpResponse("добавлен айди: {}".format(d))
-        return HttpResponse("этот id уже есть в таблице: {}".format(d))    
+        return HttpResponse("этот id уже есть в таблице: {}".format(d))
     else:
         tel("error: {}".format(c["text"]), 433019587)
     return HttpResponse("error: {}".format(c["text"]))
@@ -88,9 +88,12 @@ def id_del(request):
     if c["status"]:
         try:
             d = int(a)
-            d = id_list.objects.get(number=d)
         except Exception:
             return HttpResponse("your id is not number: {}".format(a))
+        try:
+            d = id_list.objects.get(number=d)
+        except Exception:
+            return HttpResponse("this id not exist in the table: {}".format(a))
         i = d.delete()
     return HttpResponse("id: {} успешно удалён".format(a))
 
