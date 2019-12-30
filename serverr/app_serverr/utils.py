@@ -14,7 +14,6 @@ def check_id(st, f):
     except:
         return {"status": False, "text": "доступ запрещён!", "flag": f}
     for id in l:
-        tel(l[id].number, 433019587)
         if str(l[id].number) == st:
             return {"status": True}
     return {"status": False, "text": "доступ запрещён.", "flag": f}
