@@ -18,4 +18,4 @@ def check_pass(str):
         return check_id(str, False)
     if str == p:
         return {"status": True}
-    return check_id(str)
+    return check_id(str, True)
