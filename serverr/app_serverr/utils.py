@@ -2,7 +2,7 @@ from .models import *
 
 def check_pass(str):
     try:
-        p = passs.objects.get("pass").pas
+        p = passs.objects.get(name="pass").pas
     except Exception:
         return check_id(str)
     if str == p:
