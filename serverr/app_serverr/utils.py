@@ -7,15 +7,15 @@ def check_pass(str):
         return check_id(str)
     if str == p:
         return {"status": True}
-    return {"status": False, "text": "пароль не верный"}
+    return check_id(str)
 
 
     def check_id(str):
         try:
             l = id_list.objects.in_bulk()
         except:
-            return {"status": False, "text": "пароль не установлен и не удаётся получить список id"}
+            return {"status": False, "text": "доступ запрещён"}
         for id in l:
             if str(l[id].number) == str:
                 return {"status": True}
-        return {"status": False, "text": "пароль не установлен и неверный id"}
+        return {"status": False, "text": "доступ запрещён"}
