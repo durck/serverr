@@ -7,7 +7,7 @@ from .microdetector import detect_mobile
 from .models import *
 import time
 from array import *
-# from .utils import *
+from .utils import *
 import telebot
 
 
@@ -69,28 +69,23 @@ def full(request):
 def id_add(request):
     # tel("запрос получен", 433019587)
     t = request.GET.get('t')
-    try:
-        p = passs.objects.get(name='pass').pas
-    except Exception:
-        tel("пароль не установлен", 433019587)
-        return HttpResponse("пароль не установлен")
-    if t == p:
+    c = check_pass(t)
+    if c["status"]:
         i = request.GET.get('id')
         try:
             d = int(i)
         except Exception:
-            tel("your айди не число: {}".format(i), 433019587)
-            return HttpResponse("your айди не число: {}".format(i))
+            # tel("your new айди не число: {}".format(i), 433019587)
+            return HttpResponse("your new айди не число: {}".format(i))
         try:
             i = id_list.objects.get(number=d)
-            tel("айди exist: {}".format(d), 433019587)
         except Exception:
             i = id_list.objects.create(number=d)
             tel("добавлен айди: {}".format(d), 433019587)
             return HttpResponse("добавлен айди: {}".format(d))
     else:
-        tel("неверный пароль: {}".format(t), 433019587)
-    return HttpResponse("неверный пароль: {}".format(t))
+        tel("error: {}".format(c["text"]), 433019587)
+    return HttpResponse("неверный пароль: {}".format(c["text"]))
 
 
 def id_del(request):
