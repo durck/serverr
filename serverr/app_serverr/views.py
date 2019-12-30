@@ -75,6 +75,7 @@ def id_add(request):
             i = id_list.objects.create(number=d)
             tel("добавлен айди: {}".format(d), 433019587)
             return HttpResponse("добавлен айди: {}".format(d))
+        return HttpResponse("этот id уже есть в таблице: {}".format(d))    
     else:
         tel("error: {}".format(c["text"]), 433019587)
     return HttpResponse("error: {}".format(c["text"]))
