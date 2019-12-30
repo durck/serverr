@@ -166,10 +166,5 @@ def get_ids(request):
         # tel(f, 433019587)
         m.append(i[f].number)
         s += "```{}```\n".format(i[f].number)
-    try:
-        c = int(c)
-        # tel("c - int", 433019587)
-    except(ValueError, TypeError):
-        return HttpResponse("chat id error")
     o = s
     return HttpResponse(o)
