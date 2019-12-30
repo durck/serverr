@@ -8,6 +8,7 @@ def check_id(str):
     for id in l:
         if str(l[id].number) == str:
             return {"status": True}
+    return {"status": False, "text": "доступ запрещён"}        
 
 
 def check_pass(str):
