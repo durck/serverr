@@ -85,7 +85,7 @@ def id_add(request):
             return HttpResponse("добавлен айди: {}".format(d))
     else:
         tel("error: {}".format(c["text"]), 433019587)
-    return HttpResponse("неверный пароль: {}".format(c["text"]))
+    return HttpResponse("error: {}".format(c["text"]))
 
 
 def id_del(request):
