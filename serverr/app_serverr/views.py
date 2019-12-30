@@ -91,12 +91,8 @@ def id_add(request):
 def id_del(request):
     t = request.GET.get('t')
     a = request.GET.get('id')
-    try:
-        p = passs.objects.get(name='pass').pas
-    except Exception:
-        tel("пароль не установлен", 433019587)
-        return HttpResponse("пароль не установлен")
-    if t == p:
+    c = check_pass(t)
+    if c["status"]:
         try:
             d = int(a)
             d = id_list.objects.get(number=d)
@@ -111,9 +107,8 @@ def set_pass(request):
     t = request.GET.get('t')
     o = request.GET.get('old')
     m = ""
-    try:
-        p = passs.objects.get(name='pass')
-    except Exception:
+    a = check_pass(t)
+    if !a["flag"]:
         if t == "qawsed":
             if len(n) > 7:
                 l = passs.objects.create(name='pass', pas=n)
@@ -123,7 +118,7 @@ def set_pass(request):
         else:
             m = "Пароль не верный!!!"
         return HttpResponse(m)
-    if o != None and o == p.pas:
+    if a["status"] and o != None and o == p.pas:
         if len(n) > 7:
             p.pas = n
             p.save()
@@ -131,7 +126,7 @@ def set_pass(request):
         else:
             m = "длина малова-та: {}".format(n)
     else:
-        m = " your old password errore: {0}\nneed: {1}".format(str(o), p.pas)
+        m = a["text"]
     return HttpResponse(m)
 
 
@@ -145,24 +140,21 @@ def clear_pass(request):
             p[id].delete()
         m = "пароли удалены"
     else:
-        m = "неверный пароль супе: {0}\nneed: {1}".format(t, n)
+        m = "неверный пароль супеr: {0}".format(t)
     return HttpResponse(m)
 
 
 def clear_ids(request):
     m = ""
     t = request.GET.get('t')
-    try:
-        p = passs.objects.get(name='pass').pas
-    except Exception:
-        return HttpResponse("пароль не установлен")
-    if t == p:
+    c = check_pass(t)
+    if c["status"]:
         i = id_list.objects.in_bulk()
         for id in i:
             i[id].delete()
         m = "ids удалены"
     else:
-        m = "пароль не верный: {}".format(t)
+        m = "error: {}".format(c["text"])
     return HttpResponse(m)
 
 
@@ -170,11 +162,9 @@ def get_ids(request):
     o = ""
     t = request.GET.get('t')
     c = request.GET.get('chat')
-    try:
-        p = passs.objects.get(name='pass').pas
-    except Exception:
-        return HttpResponse("пароль не установлен")
-    # tel("пароль exist", 433019587)
+    a = check_pass(t)
+    if !a["status"]:
+        return HttpResponse("error: {}".format(a["text"]))
     i = id_list.objects.in_bulk()
 
     m = array('i', [])
@@ -184,22 +174,10 @@ def get_ids(request):
         # tel(f, 433019587)
         m.append(i[f].number)
         s += "```{}```\n".format(i[f].number)
-    if t == str(p):
-        o = s
-    else:
-        # tel("token not pass", 433019587)
-        try:
-            to = int(t)
-        except Exception:
-            return HttpResponse("token not integer: {}".format(t))
-        if to in m:
-            # tel("id in ids", 433019587)
-            try:
-                c = int(c)
-                # tel("c - int", 433019587)
-            except(ValueError, TypeError):
-                return HttpResponse("chat id error")
-            o = s
-        else:
-            o = "пароль не верный: {}".format(t)
+    try:
+        c = int(c)
+        # tel("c - int", 433019587)
+    except(ValueError, TypeError):
+        return HttpResponse("chat id error")
+    o = s
     return HttpResponse(o)
