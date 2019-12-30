@@ -163,7 +163,7 @@ def get_ids(request):
     t = request.GET.get('t')
     c = request.GET.get('chat')
     a = check_pass(t)
-    if !a["status"]:
+    if a["status"] is False:
         return HttpResponse("error: {}".format(a["text"]))
     i = id_list.objects.in_bulk()
 
