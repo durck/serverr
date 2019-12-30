@@ -108,7 +108,7 @@ def set_pass(request):
     o = request.GET.get('old')
     m = ""
     a = check_pass(t)
-    if !a["flag"]:
+    if a["flag"] == False:
         if t == "qawsed":
             if len(n) > 7:
                 l = passs.objects.create(name='pass', pas=n)
