@@ -1,4 +1,4 @@
-
+from .models import *
 
 def check_pass(str):
     try:
@@ -18,4 +18,4 @@ def check_pass(str):
         for id in l:
             if str(l[id].number) == str:
                 return {"status": True}
-        return {"status": False, "text": "пароль не установлен и неверный id"}             
+        return {"status": False, "text": "пароль не установлен и неверный id"}
