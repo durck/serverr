@@ -15,7 +15,7 @@ def check_id(st, f):
         return {"status": False, "text": "доступ запрещён!", "flag": f}
     for id in l:
         if str(l[id].number) == st:
-            return {"status": True}
+            return {"status": True, "flag": f}
     return {"status": False, "text": "доступ запрещён.", "flag": f}
 
 
