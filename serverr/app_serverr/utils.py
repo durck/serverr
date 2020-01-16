@@ -11,7 +11,7 @@ def tel(mes, i):
 def check_id(st, f):
     try:
         l = id_list.objects.in_bulk()
-    except:
+    except Exception:
         return {"status": False, "text": "доступ запрещён!", "flag": f}
     for id in l:
         if str(l[id].number) == st:
