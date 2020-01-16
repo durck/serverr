@@ -104,25 +104,28 @@ def set_pass(request):
     o = request.GET.get('old')
     m = ""
     a = check_pass(t)
-    if a["flag"] == False:
-        if t == "qawsed":
-            if len(n) > 7:
-                l = passs.objects.create(name='pass', pas=n)
-                m = "Новый пароль успешно установлен: {}".format(n)
+    try:
+        if a["flag"] == False:
+            if t == "qawsed":
+                if len(n) > 7:
+                    l = passs.objects.create(name='pass', pas=n)
+                    m = "Новый пароль успешно установлен: {}".format(n)
+                else:
+                    m = "Длина пароля маловата - нужно не меньше 8 символов"
             else:
-                m = "Длина пароля маловата - нужно не меньше 8 символов"
+                m = "Пароль не верный!!!"
+            return HttpResponse(m)
+        if a["status"] and o != None and o == p.pas:
+            if len(n) > 7:
+                p.pas = n
+                p.save()
+                m = "пароль новый установлен: {}".format(n)
+            else:
+                m = "длина малова-та: {}".format(n)
         else:
-            m = "Пароль не верный!!!"
-        return HttpResponse(m)
-    if a["status"] and o != None and o == p.pas:
-        if len(n) > 7:
-            p.pas = n
-            p.save()
-            m = "пароль новый установлен: {}".format(n)
-        else:
-            m = "длина малова-та: {}".format(n)
-    else:
-        m = a["text"]
+            m = a["text"]
+    except Exception:
+        HttpResponse("some error!")        
     return HttpResponse(m)
 
 
