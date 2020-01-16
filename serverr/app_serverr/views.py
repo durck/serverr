@@ -124,8 +124,8 @@ def set_pass(request):
                 m = "длина малова-та: {}".format(n)
         else:
             m = a["text"]
-    except Exception:
-        HttpResponse("some error!")        
+    except KeyError:
+        HttpResponse("some error!")
     return HttpResponse(m)
 
 
