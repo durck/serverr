@@ -25,5 +25,5 @@ def check_pass(st):
     except Exception:
         return check_id(st, False)
     if str == p:
-        return {"status": True}
+        return {"status": True, "flag": True}
     return check_id(st, True)
