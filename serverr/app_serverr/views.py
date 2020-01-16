@@ -125,7 +125,7 @@ def set_pass(request):
         else:
             m = a["text"]
     except KeyError:
-        return HttpResponse("some error!")
+        return HttpResponse("some error!\na: {0}".format(a))
     return HttpResponse(m)
 
 
