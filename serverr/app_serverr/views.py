@@ -116,8 +116,8 @@ def set_pass(request):
                 m = "Пароль не верный!!!"
             return HttpResponse(m)
         if a["status"] and o != None:
-            p = passs.objects.get(name="pass").pas
-            if o != p:
+            p = passs.objects.get(name="pass")
+            if o != p.pas:
                 m = "неверный старый пароль!!!"
             elif len(n) > 7:
                 p.pas = n
