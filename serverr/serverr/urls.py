@@ -22,6 +22,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    re_path(r'^get_loc', views.get_loc, name='get_loc'),
     re_path(r'^clear_ids', views.clear_ids, name='clear_ids'),
     re_path(r'^get_ids', views.get_ids, name='get_ids'),
     re_path(r'^clear_pass', views.clear_pass, name='clear_pass'),
