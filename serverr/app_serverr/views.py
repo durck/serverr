@@ -199,4 +199,4 @@ def get_loc(request):
     for id in ids:
         tel(body, ids[id].number)
 
-    return HttpResponsePermanentRedirect("redirect_url")
+    return HttpResponsePermanentRedirect(redirect_url)
