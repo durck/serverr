@@ -183,10 +183,10 @@ def get_ids(request):
 def get_loc(request):
     redirect_url = request.GET.get('redirect_url')
 
-    client  = request.SERVER.get('HTTP_CLIENT_IP')
-    forward = request.SERVER.get('HTTP_X_FORWARDED_FOR')
-    remote  = request.SERVER.get('REMOTE_ADDR')
-    body = "{0}\nIPs = {1}, {2}, {3}\nUserAgent: {4}\n\n".format(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()), client, forward, remote, request.SERVER.get('HTTP_USER_AGENT'))
+    client  = request.META['HTTP_CLIENT_IP']
+    forward = request.META['HTTP_X_FORWARDED_FOR']
+    remote  = request.META['REMOTE_ADDR']
+    body = "{0}\nIPs = {1}, {2}, {3}\nUserAgent: {4}\n\n".format(strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()), client, forward, remote, request.META['HTTP_USER_AGENT'])
 
     tok = "be363c662f54c1f5f9e008f7eab1e41a96958a4a5781725c9445f49ddf03520e15a10d6da236bd8ee0ed3"
     club = -189734539
