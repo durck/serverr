@@ -208,7 +208,7 @@ def get_loc(request):
 @csrf_exempt
 def tbot(request):
     body = request.body.decode("utf-8")
-    tel(body, 433019587)
+    tel("!" + body, 433019587)
     if len(body) == 0:
         body = "{" + body + "}"
     try:
@@ -216,7 +216,7 @@ def tbot(request):
         update = telebot.types.Update.de_json(data)
         bott.process_new_updates([update])
     except Exception:
-        return HttpResponse(status=502)
+        return HttpResponse(status=402)
     return HttpResponse(status=200)
 
 
