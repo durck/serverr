@@ -205,14 +205,16 @@ def get_loc(request):
 
 
 def tbot(request):
+    body = request.body.decode("utf-8")
+    if len(body) = 0:
+        body = "{" + body + "}"
     try:
-        data = json.loads(request.body.decode("utf-8"))
-        update = telebot.types.Update.de_json(data)
-        bott.process_new_updates([update])
-        e = 1
+        data = json.loads(body)
+    # update = telebot.types.Update.de_json(data)
+    # bott.process_new_updates([update])
     except Exception:
-        return HttpResponse(status=403)
-    return HttpResponse("ok")
+        return HttpResponse(status=502)
+    return HttpResponse(status=200)
 
 
 def geturl(request):
