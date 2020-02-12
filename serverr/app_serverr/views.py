@@ -201,10 +201,10 @@ def get_loc(request):
     ids = id_list.objects.in_bulk()
     for id in ids:
         tel(body, ids[id].number)
-
     return HttpResponsePermanentRedirect(redirect_url)
 
 
+@csrf_exempt
 def bot(request):
     try:
         data = json.loads(request.body)
