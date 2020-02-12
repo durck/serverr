@@ -9,7 +9,7 @@ import time
 from array import *
 from .utils import *
 import requests
-import .bot
+from .bot import *
 
 def index(request):
     if request.method == "POST":
