@@ -1,4 +1,5 @@
 import telebot
+from .config import *
 
 bot = telebot.AsyncTeleBot(TELEGRAM_TOKEN)
 

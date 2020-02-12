@@ -9,7 +9,6 @@ import time
 from array import *
 from .utils import *
 import requests
-from .config import *
 from .bot import *
 
 def index(request):
