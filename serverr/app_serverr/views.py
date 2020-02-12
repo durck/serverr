@@ -211,7 +211,7 @@ def bot(request):
         update = telebot.types.Update.de_json(data)
         bot.process_new_updates([update])
     except:
-        return HttpResponse(status="403")
+        return HttpResponse(status=403)
     return HttpResponse("ok")
 
 
