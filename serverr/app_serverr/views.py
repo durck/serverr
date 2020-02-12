@@ -204,12 +204,11 @@ def get_loc(request):
     return HttpResponsePermanentRedirect(redirect_url)
 
 
-@csrf_exempt
-def bot(request):
+def tbot(request):
     try:
         data = json.loads(request.body)
-        update = telebot.types.Update.de_json(data)
-        bot.process_new_updates([update])
+        #update = telebot.types.Update.de_json(data)
+        #bot.process_new_updates([update])
     except Exception:
         return HttpResponse(status=403)
     return HttpResponse("ok")

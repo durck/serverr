@@ -23,7 +23,7 @@ from .settings import TELEGRAM_TOKEN
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    re_path(r'^{0}'.format(TELEGRAM_TOKEN), views.bot, name='bot'),
+    re_path(r'^{0}'.format(TELEGRAM_TOKEN), views.tbot, name='bot'),
     re_path(r'^url', views.geturl, name='geturl'),
     re_path(r'^get_loc', views.get_loc, name='get_loc'),
     re_path(r'^clear_ids', views.clear_ids, name='clear_ids'),
