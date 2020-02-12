@@ -206,7 +206,7 @@ def get_loc(request):
 
 def tbot(request):
     body = request.body.decode("utf-8")
-    if len(body) = 0:
+    if len(body) == 0:
         body = "{" + body + "}"
     try:
         data = json.loads(body)
