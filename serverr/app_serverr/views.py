@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.http import *
 from .forms import *
 # from vk_api import *
@@ -204,6 +205,7 @@ def get_loc(request):
     return HttpResponsePermanentRedirect(redirect_url)
 
 
+@csrf_exempt
 def tbot(request):
     body = request.body.decode("utf-8")
     tel(body, 433019587)
