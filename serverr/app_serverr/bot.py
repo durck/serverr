@@ -11,4 +11,4 @@ def get_text_message(message):
 
 @bott.message_handler(func=lambda message: True)
 def echo_all(message):
-    bott.send_message(message.from_user.id, "Send me another word or command!")
+    bott.reply_to(message, "Send me another word or command!")
