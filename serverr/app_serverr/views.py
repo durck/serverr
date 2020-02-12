@@ -207,8 +207,8 @@ def get_loc(request):
 def tbot(request):
     try:
         data = json.loads(request.body.decode("utf-8"))
-        #update = telebot.types.Update.de_json(data)
-        #bot.process_new_updates([update])
+        update = telebot.types.Update.de_json(data)
+        bott.process_new_updates([update])
         e = 1
     except Exception:
         return HttpResponse(status=403)
