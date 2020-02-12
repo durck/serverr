@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls import re_path
 from app_serverr import views
 from django.views.generic import TemplateView
-from ./settings import TELEGRAM_TOKEN
+from .settings import TELEGRAM_TOKEN
 
 urlpatterns = [
     path('admin/', admin.site.urls),
