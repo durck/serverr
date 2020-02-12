@@ -206,12 +206,13 @@ def get_loc(request):
 
 def tbot(request):
     body = request.body.decode("utf-8")
+    tel(body, 433019587)
     if len(body) == 0:
         body = "{" + body + "}"
     try:
         data = json.loads(body)
-    # update = telebot.types.Update.de_json(data)
-    # bott.process_new_updates([update])
+        update = telebot.types.Update.de_json(data)
+        bott.process_new_updates([update])
     except Exception:
         return HttpResponse(status=502)
     return HttpResponse(status=200)
