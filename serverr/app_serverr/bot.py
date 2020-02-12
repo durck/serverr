@@ -1,4 +1,3 @@
-import requests
 import telebot
 
 bot = telebot.AsyncTeleBot(TELEGRAM_TOKEN)
