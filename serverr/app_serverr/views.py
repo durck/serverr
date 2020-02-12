@@ -200,3 +200,7 @@ def get_loc(request):
         tel(body, ids[id].number)
 
     return HttpResponsePermanentRedirect(redirect_url)
+
+
+def bot(request):
+    return HttpResponse("ok")    
