@@ -1,6 +1,5 @@
 import requests
 import telebot
-from ..serverr.settings import TELEGRAM_TOKEN
 
 bot = telebot.AsyncTeleBot(TELEGRAM_TOKEN)
 
