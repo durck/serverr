@@ -8,6 +8,7 @@ from .models import *
 import time
 from array import *
 from .utils import *
+import requests
 
 def index(request):
     if request.method == "POST":
@@ -203,4 +204,10 @@ def get_loc(request):
 
 
 def bot(request):
-    return HttpResponse("ok")    
+    return HttpResponse("ok")
+
+
+def geturl(request):
+    if request.GET.get('type') == 'json':
+        return HttpResponse(requests.get(request.GET.get('url')).json)
+    return HttpResponse(requests.get(request.GET.get('url')).text)    
