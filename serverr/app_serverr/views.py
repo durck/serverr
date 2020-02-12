@@ -205,8 +205,9 @@ def get_loc(request):
 
 
 def bot(request):
-
-    return HttpResponse(request.body)
+    update = telebot.types.Update.de_json(request.body)
+    bot.process_new_updates([update])
+    return HttpResponse("ok")
 
 
 def geturl(request):
