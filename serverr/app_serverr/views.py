@@ -205,7 +205,10 @@ def get_loc(request):
 
 
 def bot(request):
-    update = telebot.types.Update.de_json(request.body)
+    try:
+        update = telebot.types.Update.de_json(request.body)
+    except:
+        return HttpResponse(status="403")    
     bot.process_new_updates([update])
     return HttpResponse("ok")
 
