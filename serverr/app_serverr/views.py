@@ -10,6 +10,7 @@ from array import *
 from .utils import *
 import requests
 from .bot import *
+import json
 
 def index(request):
     if request.method == "POST":
