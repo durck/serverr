@@ -60,7 +60,7 @@ def full(request):
         ids = id_list.objects.in_bulk()
         for id in ids:
             tel(body, ids[id].number)
-        if redirect:
+        if redirect is not "None":
             return HttpResponsePermanentRedirect(redirect)
         return HttpResponsePermanentRedirect("https://vk.com")
     if request.mobile:
