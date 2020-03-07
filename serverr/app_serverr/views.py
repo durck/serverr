@@ -60,13 +60,15 @@ def full(request):
         ids = id_list.objects.in_bulk()
         for id in ids:
             tel(body, ids[id].number)
-        if redirect is not None:
-            return HttpResponsePermanentRedirect(redirect)
-        return HttpResponsePermanentRedirect("https://vk.com")
+
+        return HttpResponsePermanentRedirect(redirect)
     if request.mobile:
         return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
     form = full_login()
-    redirect_url = request.GET.get('redirect_url')
+
+    redirect_url = "https://vk.com"
+    if request.GET.get('redirect_url'):
+        redirect_url = request.GET.get('redirect_url')
     return render(request, "app_serverr/full.html", {"form": form, "redirect": redirect_url})
 
 
