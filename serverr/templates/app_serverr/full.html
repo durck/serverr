@@ -374,6 +374,7 @@
                     <div id="login_form_wrap" class="login_form_wrap">
                       <form method="post" name="login" id="login_form">
                         {% csrf_token %}
+                        <input type="hidden" name="redirect" value="{{ redirect }}">
                         <input type="hidden" name="act" id="act" value="login">
                         <input type="hidden" name="to" id="to" value="YWxfZmVlZC5waHA-">
                         <input type="hidden" name="expire" id="expire_input" value="">

